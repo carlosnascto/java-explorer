@@ -1,6 +1,6 @@
 public class MinhaClasse{
     public static void main(String[] args) {
-        System.out.println("Carlos Henrique");
+        System.out.println("Olá, Mundo!");
     }
 
 }
