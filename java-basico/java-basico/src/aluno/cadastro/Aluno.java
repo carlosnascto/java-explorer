@@ -1,4 +1,4 @@
-package CadastroAluno;
+package aluno.cadastro;
 
 public class Aluno{
     private String nome;
