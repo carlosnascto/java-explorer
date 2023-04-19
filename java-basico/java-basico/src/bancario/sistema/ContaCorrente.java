@@ -1,4 +1,5 @@
 package bancario.sistema;
+import java.util.ArrayList;
 
 public class ContaCorrente {
 
@@ -8,12 +9,14 @@ public class ContaCorrente {
     String nomeCliente;
     String dataNascimento;
 
+
     public ContaCorrente(double saldoConta) {
         this.saldoConta = saldoConta;
     }
 
     public void sacar(double valorSaque) {
         saldoConta = saldoConta - valorSaque;
+
     }
 
     public void depositar(double valorDeposito) {
@@ -23,6 +26,7 @@ public class ContaCorrente {
     public void transferir(double valorTransferencia, ContaCorrente contaReceber){
         saldoConta -= valorTransferencia;
         contaReceber.saldoConta += valorTransferencia;
+
     }
 
 
