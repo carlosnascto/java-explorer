@@ -1,4 +1,3 @@
-// aprendendo algumas palavras reservadas na prática
 public class Somar {
 
 
