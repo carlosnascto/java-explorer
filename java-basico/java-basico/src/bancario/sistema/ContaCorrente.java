@@ -1,6 +1,7 @@
 package bancario.sistema;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
 
 public class ContaCorrente {
 
@@ -13,12 +14,17 @@ public class ContaCorrente {
     ArrayList<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 
     public void obterHistorico() {
+        DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         StringBuilder sb = new StringBuilder("----- HISTÓRICO DE MOVIMENTAÇÕES -----\n");
+
+
+        sb.append("Tipo" + " | Valor" +" | Data" +" | Descrição" + "\n");
         for(Movimentacao mov : movimentacoes) {
-            sb.append("Tipo: " + mov.getTipoMovimentacao() +
-                               " | Valor: " + mov.getValorMov() +
-                               " | Data: " + mov.getDataMov() +
-                               " | Descrição: " + mov.getDescricao() + "\n");
+            String dataFormatada = mov.dataMov.format(formatar);
+            sb.append( mov.getTipoMovimentacao() +
+                    " | " + mov.getValorMov() +
+                    " | " + dataFormatada +
+                    " | " +mov.getDescricao() + "\n");
         }
         System.out.println(sb.toString());
     }
