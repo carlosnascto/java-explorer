@@ -8,6 +8,7 @@ public class SistemaBancario {
         ContaCorrente conta1 = new ContaCorrente(100.50);
         ContaCorrente conta2 = new ContaCorrente(332.45);
         conta1.sacar(100.45, "Saque para uma consulta");
+        conta1.sacar(20.45, "Saque para uma consulta");
 
         conta1.obterHistorico();
     }

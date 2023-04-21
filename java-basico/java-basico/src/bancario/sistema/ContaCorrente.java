@@ -13,12 +13,14 @@ public class ContaCorrente {
     ArrayList<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 
     public void obterHistorico() {
+        StringBuilder sb = new StringBuilder("----- HISTÓRICO DE MOVIMENTAÇÕES -----\n");
         for(Movimentacao mov : movimentacoes) {
-            System.out.println("Tipo: " + mov.getTipoMovimentacao() +
-                    " | Valor: " + mov.getValorMov() +
-                    " | Data: " + mov.getDataMov() +
-                    " | Descrição: " + mov.getDescricao());
+            sb.append("Tipo: " + mov.getTipoMovimentacao() +
+                               " | Valor: " + mov.getValorMov() +
+                               " | Data: " + mov.getDataMov() +
+                               " | Descrição: " + mov.getDescricao() + "\n");
         }
+        System.out.println(sb.toString());
     }
     public ContaCorrente(double saldoConta) {
         this.saldoConta = saldoConta;
