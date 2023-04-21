@@ -12,53 +12,58 @@ public class ContaCorrente {
 
     ArrayList<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 
-
+    public void obterHistorico() {
+        for(Movimentacao mov : movimentacoes) {
+            System.out.println("Tipo: " + mov.getTipoMovimentacao() +
+                    " | Valor: " + mov.getValorMov() +
+                    " | Data: " + mov.getDataMov() +
+                    " | Descrição: " + mov.getDescricao());
+        }
+    }
     public ContaCorrente(double saldoConta) {
         this.saldoConta = saldoConta;
     }
 
-    public void sacar(double valorSaque) {
+    public void sacar(double valorSaque, String descricao) {
         saldoConta = saldoConta - valorSaque;
 
         Movimentacao mov = new Movimentacao();
         mov.setValorMov(valorSaque);
         mov.setDataMov(LocalDateTime.now());
-        mov.setDescricao("Saque para manutenção");
         mov.setTipoMovimentacao("Saque");
+
+        mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
     }
 
-    public void depositar(double valorDeposito) {
+    public void depositar(double valorDeposito, String descricao) {
         saldoConta += valorDeposito;
 
         Movimentacao mov = new Movimentacao();
         mov.setValorMov(valorDeposito);
         mov.setDataMov(LocalDateTime.now());
-        mov.setDescricao("Depósito para poupança");
         mov.setTipoMovimentacao("Depósito");
+
+        mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
     }
 
-    public void transferir(double valorTransferencia, ContaCorrente contaReceber){
+    public void transferir(double valorTransferencia, ContaCorrente contaReceber, String descricao){
 
         saldoConta -= valorTransferencia;
         contaReceber.saldoConta += valorTransferencia;
 
-        //todas as transações precisam criar uma movimentação
-        //aonde mais este código precisa ser replicado
         Movimentacao mov = new Movimentacao();
         mov.setValorMov(valorTransferencia);
         mov.setDataMov(LocalDateTime.now());
-        mov.setDescricao("Transferência para construção");
         mov.setTipoMovimentacao("Transferência");
+
+        mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
 
-        //vc precisa identificar aonde e quando vai imprimir as movimentações
-
     }
-
 
 }

@@ -7,10 +7,9 @@ public class SistemaBancario {
     public static void main(String[] args) {
         ContaCorrente conta1 = new ContaCorrente(100.50);
         ContaCorrente conta2 = new ContaCorrente(332.45);
-        conta1.transferir(20.0, conta2);
-        conta1.transferir(45.0, conta2);
-        conta1.transferir(22.0, conta2);
-        conta1.sacar(30);
+        conta1.sacar(100.45, "Saque para uma consulta");
+
+        conta1.obterHistorico();
     }
 
 }
