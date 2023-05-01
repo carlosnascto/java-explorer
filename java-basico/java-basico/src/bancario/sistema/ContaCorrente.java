@@ -67,7 +67,6 @@ public class ContaCorrente {
         mov.setValorMov(valorTransferencia);
         mov.setDataMov(LocalDateTime.now());
         mov.setTipoMovimentacao("Transferência");
-
         mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
