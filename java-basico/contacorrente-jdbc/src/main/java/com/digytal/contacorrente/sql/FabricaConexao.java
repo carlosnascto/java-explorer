@@ -16,7 +16,4 @@ public class FabricaConexao {
         return conn;
     }
 
-    public static void main(String[] args) {
-        criarConexao();
-    }
 }

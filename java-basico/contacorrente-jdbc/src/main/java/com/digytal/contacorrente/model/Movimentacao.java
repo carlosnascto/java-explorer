@@ -1,7 +1,8 @@
-package bancario.sistema;
+package com.digytal.contacorrente.model;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-public class  Movimentacao {
+public class Movimentacao extends ArrayList<Movimentacao> {
     LocalDateTime dataMov = LocalDateTime.now();
     double valorMov;
     String descricao;
