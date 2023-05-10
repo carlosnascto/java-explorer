@@ -1,5 +1,6 @@
 package com.digytal.contacorrente;
 import com.digytal.contacorrente.model.ContaCorrente;
+import com.digytal.contacorrente.repository.ContaRepository;
 import com.digytal.contacorrente.repository.MovimentacaoRepository;
 
 public class ContaCorrenteAplication {
@@ -11,7 +12,7 @@ public class ContaCorrenteAplication {
         conta1.depositar(20.00, "Deposito para poupança");
         conta1.transferir(20.00, conta2, "Tranferencia para mercado");
 
-        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
-        movimentacaoRepository.salvar(ContaCorrente.movimentacoes);
+        ContaRepository contaRepository = new ContaRepository();
+        contaRepository.salvar(conta1);
     }
 }

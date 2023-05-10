@@ -1,5 +1,7 @@
 package com.digytal.contacorrente.model;
 
+import com.digytal.contacorrente.repository.MovimentacaoRepository;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,9 +14,55 @@ public class ContaCorrente {
     String nomeCliente;
     String dataNascimento;
 
+    public int getNumeroConta() {
+        return numeroConta;
+    }
+
+    public void setNumeroConta(int numeroConta) {
+        this.numeroConta = numeroConta;
+    }
+
+    public int getNumeroAgencia() {
+        return numeroAgencia;
+    }
+
+    public void setNumeroAgencia(int numeroAgencia) {
+        this.numeroAgencia = numeroAgencia;
+    }
+
+    public double getSaldoConta() {
+        return saldoConta;
+    }
+
+    public void setSaldoConta(double saldoConta) {
+        this.saldoConta = saldoConta;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
     public static ArrayList<Movimentacao> movimentacoes = new ArrayList<Movimentacao>();
 
-    public void obterHistorico() {
+
+
+    public ContaCorrente(double saldoConta) {
+        this.saldoConta = saldoConta;
+    }
+
+    /* public void obterHistorico() {
         DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         StringBuilder sb = new StringBuilder("----- HISTÓRICO DE MOVIMENTAÇÕES -----\n");
 
@@ -28,10 +76,7 @@ public class ContaCorrente {
                     " | " +mov.getDescricao() + "\n");
         }
         System.out.println(sb.toString());
-    }
-    public ContaCorrente(double saldoConta) {
-        this.saldoConta = saldoConta;
-    }
+    } */
 
     public void sacar(double valorSaque, String descricao) {
         saldoConta = saldoConta - valorSaque;
@@ -44,6 +89,9 @@ public class ContaCorrente {
         mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
+
+        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
+        movimentacaoRepository.salvar(mov);
     }
 
     public void depositar(double valorDeposito, String descricao) {
@@ -57,6 +105,9 @@ public class ContaCorrente {
         mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
+
+        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
+        movimentacaoRepository.salvar(mov);
     }
 
     public void transferir(double valorTransferencia, ContaCorrente contaReceber, String descricao){
@@ -71,7 +122,8 @@ public class ContaCorrente {
         mov.setDescricao(descricao);
 
         movimentacoes.add(mov);
-
+        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
+        movimentacaoRepository.salvar(mov);
     }
 
 }
