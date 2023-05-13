@@ -5,11 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class FabricaConexao {
+    static Connection conn = null;
     public static Connection criarConexao(){
-        Connection conn = null;
+
         try {
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contacorrente", "postgres", "postgres");
-            System.out.println("CONEXÃO REALIZADA COM SUCESSO");
+            if(conn == null) {
+                conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/contacorrente", "postgres", "postgres");
+                System.out.println("CONEXÃO REALIZADA COM SUCESSO");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

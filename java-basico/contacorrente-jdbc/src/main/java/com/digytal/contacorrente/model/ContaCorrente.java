@@ -2,21 +2,25 @@ package com.digytal.contacorrente.model;
 
 import com.digytal.contacorrente.repository.MovimentacaoRepository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ContaCorrente {
+    MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
 
-    int numeroConta;
-    int numeroAgencia;
-    double saldoConta;
+    Integer numeroConta;
+    Integer numeroAgencia;
+    Double saldoConta;
     String nomeCliente;
-    String dataNascimento;
+    LocalDate dataNascimento;
 
     public int getNumeroConta() {
         return numeroConta;
     }
+
+
 
     public void setNumeroConta(int numeroConta) {
         this.numeroConta = numeroConta;
@@ -34,7 +38,7 @@ public class ContaCorrente {
         return saldoConta;
     }
 
-    public void setSaldoConta(double saldoConta) {
+    public void setSaldoConta(Double saldoConta) {
         this.saldoConta = saldoConta;
     }
 
@@ -46,11 +50,11 @@ public class ContaCorrente {
         this.nomeCliente = nomeCliente;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -58,9 +62,7 @@ public class ContaCorrente {
 
 
 
-    public ContaCorrente(double saldoConta) {
-        this.saldoConta = saldoConta;
-    }
+
 
     /* public void obterHistorico() {
         DateTimeFormatter formatar = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -78,52 +80,5 @@ public class ContaCorrente {
         System.out.println(sb.toString());
     } */
 
-    public void sacar(double valorSaque, String descricao) {
-        saldoConta = saldoConta - valorSaque;
-
-        Movimentacao mov = new Movimentacao();
-        mov.setValorMov(valorSaque);
-        mov.setDataMov(LocalDateTime.now());
-        mov.setTipoMovimentacao("Saque");
-
-        mov.setDescricao(descricao);
-
-        movimentacoes.add(mov);
-
-        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
-        movimentacaoRepository.salvar(mov);
-    }
-
-    public void depositar(double valorDeposito, String descricao) {
-        saldoConta += valorDeposito;
-
-        Movimentacao mov = new Movimentacao();
-        mov.setValorMov(valorDeposito);
-        mov.setDataMov(LocalDateTime.now());
-        mov.setTipoMovimentacao("Depósito");
-
-        mov.setDescricao(descricao);
-
-        movimentacoes.add(mov);
-
-        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
-        movimentacaoRepository.salvar(mov);
-    }
-
-    public void transferir(double valorTransferencia, ContaCorrente contaReceber, String descricao){
-
-        saldoConta -= valorTransferencia;
-        contaReceber.saldoConta += valorTransferencia;
-
-        Movimentacao mov = new Movimentacao();
-        mov.setValorMov(valorTransferencia);
-        mov.setDataMov(LocalDateTime.now());
-        mov.setTipoMovimentacao("Transferência");
-        mov.setDescricao(descricao);
-
-        movimentacoes.add(mov);
-        MovimentacaoRepository movimentacaoRepository = new MovimentacaoRepository();
-        movimentacaoRepository.salvar(mov);
-    }
 
 }
